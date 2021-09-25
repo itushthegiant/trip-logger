@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
     # create a user
     def create
-        user = User.create(user_params)
+        user = User.create!(user_params)
         render json: user, status: :created
     end
 
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
     # update user users/:id
     def update
-        @user.update(user_params)
+        @user.update!(user_params)
         render json: @user, status: :ok
     end
 
