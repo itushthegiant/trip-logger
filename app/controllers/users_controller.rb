@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
     before_action :find_user, only: [:update, :show, :destroy]
 
+
     # show all users
     def index
         users = User.all

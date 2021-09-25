@@ -41,4 +41,6 @@ class TripsController < ApplicationController
         params.permit(:destination, :date, :duration, :cost, :user_id)
     end
 
+    
+
 end
