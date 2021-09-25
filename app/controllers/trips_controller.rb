@@ -9,7 +9,7 @@ class TripsController < ApplicationController
 
     # create a trip
     def create
-        trip = Trip.create(trip_params)
+        trip = Trip.create!(trip_params)
         render json: trip, status: :created
     end
 
@@ -20,7 +20,7 @@ class TripsController < ApplicationController
 
     # update trip trips/:id
     def update
-        @trip.update(trip_params)
+        @trip.update!(trip_params)
         render json: @trip, status: :ok
     end
 
