@@ -15,21 +15,18 @@ class UsersController < ApplicationController
 
     # show user users/:id
     def show
-        user = find_user
-        render json: user, include: :trips, status: :ok
+        render json: @user, include: :trips, status: :ok
     end
 
     # update user users/:id
     def update
-        user = find_user
-        user.update(user_params)
-        render json: user, status: :ok
+        @user.update(user_params)
+        render json: @user, status: :ok
     end
 
     # destroy user users/:id
     def destroy
-        user = find_user
-        user.destroy
+        @user.destroy
         head :no_content
     end
 
@@ -37,7 +34,7 @@ class UsersController < ApplicationController
     private
 
     def find_user
-        User.find_by(id: params[:id])
+         @user = User.find_by(id: params[:id])
     end
 
     def user_params
