@@ -26,6 +26,13 @@ class UsersController < ApplicationController
         render json: user, status: :ok
     end
 
+    # destroy user users/:id
+    def destroy
+        user = find_user
+        user.destroy
+        head :no_content
+    end
+
 
     private
 
