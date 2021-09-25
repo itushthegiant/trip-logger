@@ -1,47 +1,44 @@
 class TripsController < ApplicationController
-    before_action :find_user, only: [:update, :show, :destroy]
+    before_action :find_trip, only: [:update, :show, :destroy]
 
-    # show all users
+    # show all trips
     def index
-        users = User.all
-        render json: users, include: :trips, status: :ok
+        trips = Trip.all
+        render json: trips, status: :ok
     end
 
-    # create a user
+    # create a trip
     def create
-        user = User.create(user_params)
-        render json: user, status: :created
+        trip = Trip.create(trip_params)
+        render json: trip, status: :created
     end
 
-    # show user users/:id
+    # show trip trips/:id
     def show
-        user = find_user
-        render json: user, include: :trips, status: :ok
+        render json: @trip, status: :ok
     end
 
-    # update user users/:id
+    # update trip trips/:id
     def update
-        user = find_user
-        user.update(user_params)
-        render json: user, status: :ok
+        @trip.update(trip_params)
+        render json: @trip, status: :ok
     end
 
-    # destroy user users/:id
+    # destroy trip trips/:id
     def destroy
-        user = find_user
-        user.destroy
+        @trip.destroy
         head :no_content
     end
 
 
     private
 
-    def find_user
-        User.find_by(id: params[:id])
+    def find_trip
+         @trip = Trip.find_by(id: params[:id])
     end
 
-    def user_params
-        params.permit(:username, :age)
+    def trip_params
+        params.permit(:destination, :date, :duration, :cost, :user_id)
     end
 
 end
