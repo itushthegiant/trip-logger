@@ -19,6 +19,13 @@ class UsersController < ApplicationController
         render json: user, include: :trips, status: :ok
     end
 
+    # update user users/:id
+    def update
+        user = find_user
+        user.update(user_params)
+        render json: user, status: :ok
+    end
+
 
     private
 
