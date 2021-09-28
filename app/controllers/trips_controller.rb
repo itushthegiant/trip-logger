@@ -3,7 +3,11 @@ class TripsController < ApplicationController
 
     # show all trips
     def index
-        trips = Trip.all
+        if params[:user_id]
+            trips = Trip.find_by(user_id: params[:user_id])
+        else
+            trips = Trip.all
+        end
         render json: trips, status: :ok
     end
 

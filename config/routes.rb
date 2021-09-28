@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
   resources :trips
-  resources :users
+  resources :users do
+    resources :trips, only: [:index]
+  end
 end
